@@ -111,35 +111,49 @@
     </div>
     <div class="container">
         <h2>🌦️ Weather Checker</h2>
-        <p>Enter a city name to see the current weather</p>
-        <input type="text" id="cityInput" placeholder="e.g. Your City" style="padding: 10px; width: 60%; max-width: 300px; border-radius: 5px; border: 1px solid #ccc;">
+        <p>Enter coordinates to see the current weather:</p>
+        <input type="text" id="latInput" placeholder="Latitude (e.g. 12.9716)">
+        <input type="text" id="lonInput" placeholder="Longitude (e.g. 77.5946)">
         <br><br>
-        <button onclick="getWeather()" class="btn">Get Weather</button>
+        <button onclick="getWeatherByCoords()" class="btn">Get Weather</button>
         <p id="weatherResult" style="margin-top: 20px;"></p>
     </div>
     <script>
-    function getWeather() {
-        const city = document.getElementById("cityInput").value;
-        const apiKey = "47d04fc465701908b0b7aaf038a188a3"; // <-- Replace with your real API key
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("City not found");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const temp = data.main.temp;
-                const desc = data.weather[0].description;
-                const humidity = data.main.humidity;
-                document.getElementById("weatherResult").innerHTML = 
-                    `🌡️ <strong>${temp}°C</strong><br>☁️ ${desc}<br>💧 Humidity: ${humidity}%`;
-            })
-            .catch(error => {
-                document.getElementById("weatherResult").textContent = "❗ " + error.message;
-            });
+function getWeatherByCoords() {
+    const lat = document.getElementById("latInput").value.trim();
+    const lon = document.getElementById("lonInput").value.trim();
+    const apiKey = "47d04fc465701908b0b7aaf038a188a3"; // Keep this secure in real apps
+
+    if (!lat || !lon) {
+        document.getElementById("weatherResult").textContent = "❗ Please enter both latitude and longitude.";
+        return;
+    }
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Invalid coordinates or unable to fetch weather.");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const temp = data.main.temp;
+            const desc = data.weather[0].description;
+            const humidity = data.main.humidity;
+            const icon = data.weather[0].icon;
+            const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+            document.getElementById("weatherResult").innerHTML = 
+                `<img src="${iconUrl}" alt="Weather icon"><br>
+                 🌡️ <strong>${temp}°C</strong><br>
+                 ☁️ ${desc}<br>
+                 💧 Humidity: ${humidity}%`;
+        })
+        .catch(error => {
+            document.getElementById("weatherResult").textContent = "❗ " + error.message;
+        });
     }
     </script>
     <footer>
