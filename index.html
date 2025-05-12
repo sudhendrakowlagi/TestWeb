@@ -116,13 +116,28 @@
         <input type="text" id="lonInput" placeholder="Longitude (e.g. 77.5946)">
         <br><br>
         <button onclick="getWeatherByCoords()" class="btn">Get Weather</button>
+        <button onclick="getWeatherByGeolocation()" class="btn">Use My Location</button>
         <p id="weatherResult" style="margin-top: 20px;"></p>
     </div>
     <script>
+function displayWeather(data) {
+    const temp = data.main.temp;
+    const desc = data.weather[0].description;
+    const humidity = data.main.humidity;
+    const icon = data.weather[0].icon;
+    const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+    document.getElementById("weatherResult").innerHTML = 
+        `<img src="${iconUrl}" alt="Weather icon"><br>
+         🌡️ <strong>${temp}°C</strong><br>
+         ☁️ ${desc}<br>
+         💧 Humidity: ${humidity}%`;
+}
+
 function getWeatherByCoords() {
     const lat = document.getElementById("latInput").value.trim();
     const lon = document.getElementById("lonInput").value.trim();
-    const apiKey = "47d04fc465701908b0b7aaf038a188a3"; // Keep this secure in real apps
+    const apiKey = "47d04fc465701908b0b7aaf038a188a3";
 
     if (!lat || !lon) {
         document.getElementById("weatherResult").textContent = "❗ Please enter both latitude and longitude.";
@@ -138,24 +153,46 @@ function getWeatherByCoords() {
             }
             return response.json();
         })
-        .then(data => {
-            const temp = data.main.temp;
-            const desc = data.weather[0].description;
-            const humidity = data.main.humidity;
-            const icon = data.weather[0].icon;
-            const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-
-            document.getElementById("weatherResult").innerHTML = 
-                `<img src="${iconUrl}" alt="Weather icon"><br>
-                 🌡️ <strong>${temp}°C</strong><br>
-                 ☁️ ${desc}<br>
-                 💧 Humidity: ${humidity}%`;
-        })
+        .then(displayWeather)
         .catch(error => {
             document.getElementById("weatherResult").textContent = "❗ " + error.message;
         });
+}
+
+function getWeatherByGeolocation() {
+    if (!navigator.geolocation) {
+        document.getElementById("weatherResult").textContent = "❗ Geolocation is not supported by your browser.";
+        return;
     }
-    </script>
+
+    document.getElementById("weatherResult").textContent = "📍 Getting your location...";
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const apiKey = "47d04fc465701908b0b7aaf038a188a3";
+
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch weather for your location.");
+                    }
+                    return response.json();
+                })
+                .then(displayWeather)
+                .catch(error => {
+                    document.getElementById("weatherResult").textContent = "❗ " + error.message;
+                });
+        },
+        (error) => {
+            document.getElementById("weatherResult").textContent = "❗ Unable to retrieve your location.";
+        }
+    );
+}
+</script>
     <footer>
         &copy; 2025 Sudhendra Kowlagi | All rights reserved
     </footer>
