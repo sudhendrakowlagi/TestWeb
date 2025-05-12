@@ -120,7 +120,7 @@
     <script>
     function getWeather() {
         const city = document.getElementById("cityInput").value;
-        const apiKey = 47d04fc465701908b0b7aaf038a188a3; // <-- Replace with your real API key
+        const apiKey = "47d04fc465701908b0b7aaf038a188a3"; // <-- Replace with your real API key
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     
         fetch(url)
