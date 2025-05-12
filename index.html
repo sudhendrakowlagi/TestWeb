@@ -3,47 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sample Page</title>
+    <title>Sudhendra's Personal Site</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f6fa;
+            color: #1c1c1c;
+        }
+
+        header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 40px 20px;
             text-align: center;
-            margin: 50px;
-            background: #f4f4f4;
         }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        h1 {
-            color: #333;
+
+        .profile-img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #3f51b5;
         }
-        #datetime {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #666;
+
+        h2 {
+            color: #3f51b5;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #3f51b5;
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <h1>Sudhendra's Personal Site</h1>
+    </header>
+
     <div class="container">
-        <h1>Welcome to My Webpage</h1>
-        <p>This is a simple site hosted with GitHub Pages.</p>
-        <div id="datetime">Loading current time...</div>
+        <img src="https://media.licdn.com/dms/image/v2/C5103AQEwjR5J645_3w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1546721017519?e=1752710400&v=beta&t=7MOpJ66JyuCYoqaberK4Jnp2KBPYtDgoURg0ZJT41Ew" 
+             alt="Sudhendra Kowlagi" 
+             class="profile-img">
+
+        <h2>About Me</h2>
+        <p>Hello I am Sudhendra. Thank you for visiting my page. I am working in the ecommerce and tech industry, specifically in the product management area where we design products that bring value to users of the software. Professionally, I work with multiple stakeholders to define what changes or additions can be done to current product offerings to bring more customer value.</p>
+
+        <div class="links">
+            <a href="https://www.linkedin.com/in/sudhendrakowlagi/" target="_blank">LinkedIn</a> |
+            <a href="mailto:sudhendrankowlagi5@gmail.com">Email</a>
+        </div>
     </div>
 
-    <script>
-        function updateDateTime() {
-            const now = new Date();
-            const formatted = now.toLocaleString();
-            document.getElementById("datetime").textContent = `Current Date & Time: ${formatted}`;
-        }
+    <footer>
+        &copy; 2025 Sudhendra Kowlagi | All rights reserved
+    </footer>
 
-        updateDateTime();
-        setInterval(updateDateTime, 1000); // update every second
-    </script>
 </body>
 </html>
