@@ -3,99 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudhendra's Personal Site</title>
+    <title>Projects - Sudhendra Kowlagi</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f6fa;
             margin: 0;
             padding: 0;
-            background-color: #f5f6fa;
-            color: #1c1c1c;
         }
 
         header {
             background-color: #3f51b5;
             color: white;
-            padding: 40px 20px;
+            padding: 20px;
             text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
         }
 
         .container {
             max-width: 900px;
             margin: 30px auto;
+            background: white;
             padding: 20px;
-            background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .profile-img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid #3f51b5;
         }
 
         h2 {
             color: #3f51b5;
-            font-size: 1.8rem;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+        ul {
+            text-align: left;
+            padding-left: 20px;
         }
 
-        .links a {
-            margin: 0 10px;
-            text-decoration: none;
+        li {
+            margin-bottom: 15px;
+        }
+
+        a {
             color: #3f51b5;
             font-weight: bold;
+            text-decoration: none;
         }
 
-        .links a:hover {
+        a:hover {
             text-decoration: underline;
         }
 
-        footer {
+        .back-link {
+            margin-top: 30px;
+            display: block;
             text-align: center;
-            padding: 20px;
-            color: #888;
-            font-size: 0.9rem;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Sudhendra's Personal Site</h1>
-    </header>
+<header>
+    <h1>My Projects</h1>
+</header>
 
-    <div class="container">
-        <img src="https://media.licdn.com/dms/image/v2/C5103AQEwjR5J645_3w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1546721017519?e=1752710400&v=beta&t=7MOpJ66JyuCYoqaberK4Jnp2KBPYtDgoURg0ZJT41Ew" 
-             alt="Sudhendra Kowlagi" 
-             class="profile-img">
+<div class="container">
+    <h2>Highlighted Projects</h2>
+    <ul>
+        <li>
+            <strong>Weather App</strong> – A real-time weather app built with Flask and OpenWeather API.<br>
+            <a href="#">View Project</a>
+        </li>
+        <li>
+            <strong>Product Dashboard</strong> – An internal tool for prioritizing and visualizing product feature requests.<br>
+            <a href="#">Coming Soon</a>
+        </li>
+        <li>
+            <strong>This Website</strong> – A personal site built and hosted using GitHub Pages.<br>
+            <a href="index.html">Visit Home</a>
+        </li>
+    </ul>
 
-        <h2>About Me</h2>
-        <p>Hello I am Sudhendra. Thank you for visiting my page. I am working in the ecommerce and tech industry, specifically in the product management area where we design products that bring value to users of the software. Professionally, I work with multiple stakeholders to define what changes or additions can be done to current product offerings to bring more customer value.</p>
-
-        <div class="links">
-            <a href="https://www.linkedin.com/in/sudhendrakowlagi/" target="_blank">LinkedIn</a> |
-            <a href="mailto:sudhendrankowlagi5@gmail.com">Email</a>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2025 Sudhendra Kowlagi | All rights reserved
-    </footer>
+    <a href="index.html" class="back-link">← Back to Home</a>
+</div>
 
 </body>
 </html>
